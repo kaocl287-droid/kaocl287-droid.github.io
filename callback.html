@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AIOS Connect</title>
+<style>body{font:16px/1.6 system-ui,sans-serif;max-width:640px;margin:48px auto;padding:0 16px;color:#222;background:#fff}code{display:block;word-break:break-all;background:#f3f3f3;padding:12px;border-radius:6px;font-size:14px}button{margin-top:12px;padding:8px 16px;font-size:15px}</style>
+</head><body>
+<h1>AIOS: connection approved</h1>
+<p id="msg">Copy the line below and paste it into the AIOS window that asked for it. This page sends nothing anywhere.</p>
+<code id="out"></code>
+<button id="copy">Copy</button>
+<script>
+var p = new URLSearchParams(location.search);
+var out = document.getElementById("out");
+if (p.get("error")) { document.getElementById("msg").textContent = "The connection was not approved: " + p.get("error"); out.style.display = "none"; document.getElementById("copy").style.display = "none"; }
+else { out.textContent = location.href; }
+document.getElementById("copy").onclick = function () { navigator.clipboard.writeText(out.textContent); this.textContent = "Copied"; };
+</script>
+</body></html>
